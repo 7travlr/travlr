@@ -58,6 +58,7 @@ p{
 	border-radius: 0 !important;
 	border-color: #3c763d;
 	height: 45px;
+	margin-left: 100%;
 }
 p:hover{
 	cursor: default;
