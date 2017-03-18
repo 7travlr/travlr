@@ -56,8 +56,9 @@ p{
 }
 .border-radius{
 	border-radius: 0 !important;
-	border-color: #60c9eb;
+	border-color: #3c763d;
 	height: 45px;
+	margin-left: 100%;
 }
 p:hover{
 	cursor: default;
@@ -81,7 +82,7 @@ p:hover{
     background-color: rgb(96, 201, 235);
 }
 .form-control:focus {
-    border-color: #66afe9;
+    border-color: #1a441b;
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -92,7 +93,7 @@ p:hover{
 			/*navbar*/
 .navbar-default .navbar-brand{
 	border: 1px solid transparent;
-	color: #60c9eb;
+	color: #3c763d;
 	font-size: 33px;
 	padding: 10px 0px;
 	height: auto;
@@ -104,10 +105,10 @@ ul.nav.navbar-nav.navbar-right{
 	margin-top: 10px;
 }
 .navbar-default .navbar-brand span{
-	color: #583b54;
+	color: #888888;
 }
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover{
-	color: #60c9eb;
+	color: #888888;
 }
 .navbar-default {
     background-color: #fff;
@@ -117,7 +118,7 @@ ul.nav.navbar-nav.navbar-right{
     text-transform: uppercase;
 }
 .navbar-default .navbar-nav>li>a{
-	color: #60c9eb;
+	color: #3c763d;
     padding-right: 20px;
     padding-left: 20px;
     border: 1px solid transparent;
@@ -127,11 +128,11 @@ ul.nav.navbar-nav.navbar-right{
     transition: all .4s ease-in-out;
 }
 .navbar-default .navbar-nav>li>a:hover{
-	color: #60c9eb;
+	color: #888888;
 }
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
-	color: #60c9eb;
-	background: #e8f9ff;
+	color: #ffffff;
+	background: #888888;
 }
 .navbar-nav>li>a {
     padding-top: 8px;
@@ -139,8 +140,8 @@ ul.nav.navbar-nav.navbar-right{
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
     background-color: transparent;
-    color: #60c9eb;
-    background: #e8f9ff;
+    color: #ffffff;
+    background: #888888;
 }
 		/*Home*/
 .flexslider{
@@ -152,7 +153,7 @@ ul.nav.navbar-nav.navbar-right{
 	border: 0;
 	overflow-x: hidden;
 	background: transparent;
-	background-image: url('../images/header.png');
+	background-image: url('../images/header2.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 
@@ -197,7 +198,7 @@ ul.nav.navbar-nav.navbar-right{
 }
 .custom-btn:hover{
 	background: #fff;
-	color: #583b54;
+	color: #888;
 }
 /*=================================================
 ||				4. Find a Tour
@@ -212,7 +213,7 @@ ul.nav.navbar-nav.navbar-right{
 	border-right: 0px;
 }
 .custom-button{
-	background: #60c9eb;
+	background: #3c763d;
 	color: #fff;
 	width: 100%;
 	text-align: center;
@@ -221,8 +222,8 @@ ul.nav.navbar-nav.navbar-right{
 	transition: all .4s ease-in-out;
 }
 .custom-button:hover{
-	background: #53B1DE;
-	border-color: #53B1DE;
+	background: #1a441b;
+	border-color: #1a441b;
 	color: #fff;
 }
 .tour .input-group{
@@ -429,7 +430,7 @@ a.brand-logo:focus, a.brand-logo:hover{
 footer{
 	text-align: center;
 	padding: 20px;
-	background: #60c9eb;
+	background: #3c763d;
 }
 footer a{
 	color: #fff;
