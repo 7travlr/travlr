@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project 1 Instructions:
 
 * Project Goal:
@@ -32,3 +33,7 @@
 ## Groups
 
 ![groups](https://d1ax1i5f2y3x71.cloudfront.net/items/1w3T3c0z3c3G3k3W152f/Image%202017-03-14%20at%209.12.50%20PM.png?X-CloudApp-Visitor-Id=1144067)
+=======
+# Euro-Travels
+A Free Responsive Agency Template 
+>>>>>>> edef28fbf885af68fd352c726b52463e1194dcdd
