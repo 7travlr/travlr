@@ -406,9 +406,9 @@ a.brand-logo:focus, a.brand-logo:hover{
 	border-color: #53B1DE;
 	color: #fff;
 }
-/*.input-group .custom-sub{
+.input-group .custom-sub{
 	width: 300px;
-}*/
+}
 .social-icon{
 	text-align: center;
     list-style-type: none;
