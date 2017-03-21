@@ -7,30 +7,65 @@ $(document).ready(function() {
 		
 
 	//List main object with activity and location array
-	var mainObject {
-			activities = {
+	var mainObject = [{
+			activities : {
 				outdoorsy =  ["hiking", "dirt bike riding", "rock climbing"], 
+			}
+			seasons : ["Spring", "Summer", "Autumn", "Winter"],
 
-	}
-
+		}],
+	
 
 	console.log(mainObject);
-	//Concactenate user selection to query URLs
-	var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/FR/eur/en-US/uk/us/anytime/anytime?apikey=prtl6749387986743898559646983194";
+	var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/uk/2018-01/2018-03?apikey=uc166750652136729269642399717836";
+    var APIKey2 = "166a433c57516f51dfab1f7edaed8413";
 
-	//Ajax call
-	$.ajax({
-		url: queryURL,
-		method: "GET"
-	}).done(function(response) {
-		console.log("success");
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	
-	//Append or log to HTML
-	
+    // Here we are building the URL we need to query the database
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2/browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate};
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(response) {
+      console.log(response);
+    }).fail(function  (err){
+        console.error('err', err);
+    });
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+      })
+
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+
+        // Log the resulting object
+
+        console.log(response);
+
+        // Transfer content to HTML
+        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+        $(".wind").html("Wind Speed: " + response.wind.speed);
+        $(".humidity").html("Humidity: " + response.main.humidity);
+        $(".temp").html("Temperature (F) " + response.main.temp);
+        // Log the data in the console as well
+        console.log("Wind Speed: " + response.wind.speed);
+        console.log("Humidity: " + response.main.humidity);
+        console.log("Temperature (F): " + response.main.temp);
+      });
+
+      var mainObject = [{
+        snowboarding: ["Colorado", "Aspen"],
+        kayaking: ["Location"],
+        snorkeling: ["Australia", "New Zealand"],
+      }];
+      console.log(mainObject[0].kayaking[0]);
+      console.log(mainObject[0].snorkeling[1]);
+
 };
 
 
