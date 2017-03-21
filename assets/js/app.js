@@ -30,7 +30,7 @@ $(document).ready(function() {
 	})
 	
 	//Append or log to HTML
-	
+
 };
 
 
