@@ -12,8 +12,16 @@ $(document).ready(function() {
 			autumn : ["Wine Tasting", "Beer Tasting", "Coffee Tours"],
 			winter : ["Snow Boarding", "Snow Skiing", "Snow Biking", "Snow Sledding", "Sled Dog Racing"]
 		};
+
+  var mainObject = [{
+       snowboarding: ["Colorado", "Aspen"],
+       kayaking: ["location"],
+       snorkeling: ["Australia", "New Zealand"],
+     }];
 	
 	console.log(mainObject);
+  console.log(mainObject[0].kayaking[0]);
+  console.log(mainObject[0].snorkeling[1]);
 
    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/uk/2018-01/2018-03?apikey=uc166750652136729269642399717836";
 
@@ -62,15 +70,6 @@ $(document).ready(function() {
        console.log("Temperature (F): " + response.main.temp);
      });
 
-
-     var mainObject = [{
-       snowboarding: ["Colorado", "Aspen"],
-       kayaking: ["location"],
-       snorkeling: ["Australia", "New Zealand"],
-     }];
-
-     console.log(mainObject[0].kayaking[0]);
-     console.log(mainObject[0].snorkeling[1]);
 
      //declare global variables
      //recieve user input
