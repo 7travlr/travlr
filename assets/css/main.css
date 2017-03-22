@@ -41,6 +41,7 @@ body
 .section-title{
 	color: #313131;
 	text-align: center;
+	margin-top: 10px;
 }
 .section-subtitle{
 	color: #583b54;
@@ -86,6 +87,12 @@ p:hover{
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+.col-md-offset-2 {
+	margin-left: 44.666667%;
+}
+
+
 
 /*=================================================
 ||				3. Header
@@ -153,7 +160,7 @@ ul.nav.navbar-nav.navbar-right{
 	border: 0;
 	overflow-x: hidden;
 	background: transparent;
-	background-image: url('../images/header2.jpg');
+	background-image: url('../images/header2.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 
@@ -180,6 +187,7 @@ ul.nav.navbar-nav.navbar-right{
 }
 .header-title span{
 	font-weight: 700;
+	text-shadow: 2px 1px 10px #777;
 }
 .header-sub-title{
 	font-size: 14px;
