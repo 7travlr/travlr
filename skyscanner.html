@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Skyscanner API</title>
+</head>
+
+<body>
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    // Example queryURL for Giphy API
+
+    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/uk/2018-01/2018-03?apikey=uc166750652136729269642399717836";
+
+    var APIKey2 = "166a433c57516f51dfab1f7edaed8413";
+
+    // Here we are building the URL we need to query the database
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
+
+//browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}
+
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(response) {
+      console.log(response);
+    }).fail(function  (err){
+        console.error('err', err);
+    });
+
+
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
+
+
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+      })
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+        // Log the resulting object
+        console.log(response);
+
+        // Transfer content to HTML
+        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+        $(".wind").html("Wind Speed: " + response.wind.speed);
+        $(".humidity").html("Humidity: " + response.main.humidity);
+        $(".temp").html("Temperature (F) " + response.main.temp);
+
+        // Log the data in the console as well
+        console.log("Wind Speed: " + response.wind.speed);
+        console.log("Humidity: " + response.main.humidity);
+        console.log("Temperature (F): " + response.main.temp);
+      });
+
+
+
+      var mainObject = [{
+        snowboarding: ["Colorado", "Aspen"],
+        kayaking: ["location"],
+        snorkeling: ["Australia", "New Zealand"],
+      }];
+
+      console.log(mainObject[0].kayaking[0]);
+      console.log(mainObject[0].snorkeling[1]);
+
+      //declare global variables
+      //recieve user input
+        // activity
+        // season
+        // location?
+      // Create a database of activities/cities
+      // Concatenate user input into query URLs
+      // Return cheapest quotes for top 3 destinations
+
+
+
+  </script>
+
+</body>
+
+</html>
