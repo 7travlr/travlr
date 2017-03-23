@@ -1,39 +1,104 @@
 $(document).ready(function() {
 	
 	//Declare global variables for user selection
-		var activity = "";
-		var	location = "";
+		var activity = " ";
+		var	location = " ";
 		
 
 	//List main object with activity and location array
-	var mainObject = {
-			spring : ["hiking", "dirt bike riding", "rock climbing"],
-			summer : ["Surfing", "Snorkeling" , "Jet skiing"],
-			autumn : ["Wine Tasting", "Beer Tasting", "Coffee Tours"],
-			winter : ["Snow Boarding", "Snow Skiing", "Snow Biking", "Snow Sledding", "Sled Dog Racing"]
-		};
+	// var mainObject = {
+	// 		spring : ["Hiking", "Dirt Bike Riding", "Rock Climbing"],
+	// 		summer : ["Surfing", "Snorkeling" , "Jet Skiing"],
+	// 		autumn : ["Wine Tasting", "Oktoberfest"],
+	// 		winter : ["Snow Boarding", "Snow Skiing", "Dog Sleding"]
+	// 	};
 
-  var mainObject = [{
-       snowboarding: ["Colorado", "Aspen"],
-       kayaking: ["location"],
-       snorkeling: ["Australia", "New Zealand"],
-     }];
+  // var secObject = {
+  //     spring: ["Colorado, US", ""],
+  //     summer: ["Caribbean", "Mexico", ""],
+  //     autumn: ["France", "New Zealand"],
+  //     winter : ["Switzerland", "Austria", "Iceland"]
+  //    };
+
+  var mainObject = {
+                      hiking: {
+                                spring : ["Colorado", "Yosemite, CA", "Machu Pichu, Peru"],
+                                summer : ["Bryce Canyon National Park"],
+                                autumn : ["Asheville, NC", ""],
+                                winter: ["Mt. Everest!"],
+                      },
+                      dirtBikeRiding : {
+                                spring : ["Texas"],
+                                summer : ["Dubai"],
+                                autumn : [],
+                                winter: [],
+                      },
+                      rockClimbing : {
+                                spring : [],
+                                summer : [],
+                                autumn : [],
+                                winter: [],
+                      },
+                      surfing : {
+                                spring : ["Hawaii"],
+                                summer : ["Huntington Beach,CA"],
+                                autumn : ["Costa Rica"],
+                                winter: ["Australia"],
+                      },
+                      snorkeling : {
+                                spring : ["Bahamas"],
+                                summer : ["Jamaica"],
+                                autumn : ["Honduras"],
+                                winter: ["Maui, Hawaii"],
+                      },
+                      jetSkyiing : {
+                                spring : ["Miami,FL"],
+                                summer : ["Denarau Island, Fiji"],
+                                autumn : ["Naples, Italy"],
+                                winter: ["The Bay of Islands, New Zealand"],
+                      },
+                      wineTasting : {
+                                spring : ["Napa Valley"],
+                                summer : ["Bordeaux, France"],
+                                autumn : ["Tuscany, Italy"],
+                                winter: ["Barcelona, Spain"],
+                      },
+                      oktoberfest : {
+                                //spring : [],
+                                //summer : [],
+                                autumn : ["Munich, Germany"],
+                                //winter: [],
+                      },
+                      snowboarding : {
+                                spring : ["Colorado"],
+                                summer : [""],
+                                autumn : [],
+                                winter: [],
+                      },
+                      snowskiing : {
+                                spring : [],
+                                summer : [],
+                                autumn : [],
+                                winter: [],
+                      },
+                      dogSleding : {
+                                spring : [],
+                                summer : [],
+                                autumn : [],
+                                winter: [],
+                      }
+
+  }
 	
 	console.log(mainObject);
-  console.log(mainObject[0].kayaking[0]);
-  console.log(mainObject[0].snorkeling[1]);
+  console.log(mainObject.hiking.spring[0]);
 
-   var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/uk/2018-01/2018-03?apikey=uc166750652136729269642399717836";
+  //Skyscanner API
+  var APIKey1 = "an626175727210946379892487077634"; 
 
-   var APIKey2 = "166a433c57516f51dfab1f7edaed8413";
+  var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/uk/2018-01/2018-03?apikey=" + APIKey1;
 
-   // Here we are building the URL we need to query the database
-   var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
-     "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
-
-//browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}
-
-
+  //AJAX call to skycanner API
    $.ajax({
      url: queryURL,
      method: 'GET'
@@ -43,9 +108,12 @@ $(document).ready(function() {
        console.error('err', err);
    });
 
+   //OpenWeather API
 
-   var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
-     "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
+   var APIKey2 = "5159d2e8e1919edfae8b581c792abf98";
+   
+   var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?q=Orlando&units=imperial&appid="
+                    + APIKey2;
 
 
    // Here we run our AJAX call to the OpenWeatherMap API
@@ -59,21 +127,13 @@ $(document).ready(function() {
        console.log(response);
 
        // Transfer content to HTML
-       $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-       $(".wind").html("Wind Speed: " + response.wind.speed);
-       $(".humidity").html("Humidity: " + response.main.humidity);
-       $(".temp").html("Temperature (F) " + response.main.temp);
 
        // Log the data in the console as well
-       console.log("Wind Speed: " + response.wind.speed);
-       console.log("Humidity: " + response.main.humidity);
-       console.log("Temperature (F): " + response.main.temp);
+     
      });
 
 
-     //declare global variables
-     //recieve user input
-       // location?
+     //receive user input
      // Create a database of cities
      // Concatenate user input into query URLs
      // Return cheapest quotes for top 3 destinations
