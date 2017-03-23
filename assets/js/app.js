@@ -84,8 +84,8 @@ $(document).ready(function() {
                       dogSleding : {
                                 spring : [],
                                 summer : [],
-                                autumn : [],
-                                winter: [],
+                                autumn : [""],
+                                winter: ["Iceland"],
                       }
 
   }
