@@ -1,17 +1,17 @@
 $(document).ready(function() {
-	
-	//Declare global variables for user selection
-		var activity = " ";
-		var	location = " ";
-		
+  
+  //Declare global variables for user selection
+    var activity = " ";
+    var location = " ";
+    
 
-	//List main object with activity and location array
-	// var mainObject = {
-	// 		spring : ["Hiking", "Dirt Bike Riding", "Rock Climbing"],
-	// 		summer : ["Surfing", "Snorkeling" , "Jet Skiing"],
-	// 		autumn : ["Wine Tasting", "Oktoberfest"],
-	// 		winter : ["Snow Boarding", "Snow Skiing", "Dog Sleding"]
-	// 	};
+  //List main object with activity and location array
+  // var mainObject = {
+  //    spring : ["Hiking", "Dirt Bike Riding", "Rock Climbing"],
+  //    summer : ["Surfing", "Snorkeling" , "Jet Skiing"],
+  //    autumn : ["Wine Tasting", "Oktoberfest"],
+  //    winter : ["Snow Boarding", "Snow Skiing", "Dog Sleding"]
+  //  };
 
   // var secObject = {
   //     spring: ["Colorado, US", ""],
@@ -89,42 +89,89 @@ $(document).ready(function() {
                       }
 
   }
-	
-	console.log(mainObject);
+  
+  console.log(mainObject);
   console.log(mainObject.hiking.spring[0]);
 
   //Skyscanner API
-  var APIKey1 = "an626175727210946379892487077634"; 
+    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/fr/2018-01/2018-03?apikey=uc166750652136729269642399717836";
 
-  var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/uk/2018-01/2018-03?apikey=" + APIKey1;
+    var APIKey2 = "166a433c57516f51dfab1f7edaed8413";
 
-  //AJAX call to skycanner API
-   $.ajax({
-     url: queryURL,
-     method: 'GET'
-   }).done(function(response) {
-     console.log(response);
-   }).fail(function  (err){
-       console.error('err', err);
-   });
+    // Here we are building the URL we need to query the database
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
 
-   //OpenWeather API
-
-   var APIKey2 = "5159d2e8e1919edfae8b581c792abf98";
-   
-   var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?q=Orlando&units=imperial&appid="
-                    + APIKey2;
+//browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}
 
 
-   // Here we run our AJAX call to the OpenWeatherMap API
-   $.ajax({
-       url: queryURL2,
-       method: "GET"
-     })
-     // We store all of the retrieved data inside of an object called "response"
-     .done(function(response) {
-       // Log the resulting object
-       console.log(response);
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(response) {
+      console.log(response);
+      console.log(response.Places[0].Name);
+      console.log(response.Quotes[0].MinPrice);
+      var bestPrice = response.Quotes[0].MinPrice;
+
+
+      for (var i = 0; i <= response.Quotes.length-1; i++) {
+        var currentPrice = response.Quotes[i].MinPrice;
+        var bestPlaceId = response.Quotes[0].OutboundLeg.DestinationId;
+        var inboundId = response.Quotes[0].InboundLeg.DestinationId;
+
+        if (currentPrice <= bestPrice){
+         bestPrice = currentPrice;
+         bestPlaceId = response.Quotes[i].OutboundLeg.DestinationId;
+         inboundId = response.Quotes[i].InboundLeg.DestinationId;
+         console.log(bestPrice);
+        }
+
+
+      }
+      for (var j = 0; j < response.Places.length-1; j++){
+        var currentPlaceId = response.Places[j].PlaceId;
+        var currentInboundId = response.Places[j].PlaceId;
+        if (currentPlaceId === bestPlaceId){
+        var outbound = response.Places[j].Name;
+        }
+        if (currentInboundId === inboundId){
+          var inbound = response.Places[j].Name;
+          console.log("Roundtrip flight from " + inbound + " to " + outbound + "! Only $" + bestPrice + ".99!!!");
+        }
+
+      }
+
+    }).fail(function  (err){
+        console.error('err', err);
+    });
+
+
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
+
+
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+      })
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+        // Log the resulting object
+        console.log(response);
+
+        // Transfer content to HTML
+        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+        $(".wind").html("Wind Speed: " + response.wind.speed);
+        $(".humidity").html("Humidity: " + response.main.humidity);
+        $(".temp").html("Temperature (F) " + response.main.temp);
+
+        // Log the data in the console as well
+        console.log("Wind Speed: " + response.wind.speed);
+        console.log("Humidity: " + response.main.humidity);
+        console.log("Temperature (F): " + response.main.temp);
+      });
 
        // Transfer content to HTML
 
@@ -137,7 +184,4 @@ $(document).ready(function() {
      // Create a database of cities
      // Concatenate user input into query URLs
      // Return cheapest quotes for top 3 destinations
-
-});
-
 
