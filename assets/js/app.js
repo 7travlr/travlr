@@ -1,10 +1,10 @@
 $(document).ready(function() {
   
   //Declare global variables for user selection
-    var activity = " ";
-    var location = " ";
+    var clickedActivity;
+    var destination;
 
-  var mainObject = {
+    var mainObject = {
                       hiking: {
                                 spring : ["Colorado", "Yosemite, CA", "Machu Pichu, Peru"],
                                 summer : ["Bryce Canyon National Park"],
@@ -69,15 +69,11 @@ $(document).ready(function() {
   console.log(mainObject.hiking.spring[0]);
 
   //Skyscanner API
-    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/fr/2018-01/2018-03?apikey=uc166750652136729269642399717836";
+    var APIKey1 = "166750652136729269642399717836";
 
-    var APIKey2 = "166a433c57516f51dfab1f7edaed8413";
+    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/fr/2018-01/2018-03?apikey=uc" + APIKey1;
 
-    // Here we are building the URL we need to query the database
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
-      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
-
-
+    //AJAX call to SkyScanner API
     $.ajax({
       url: queryURL,
       method: 'GET'
@@ -87,7 +83,7 @@ $(document).ready(function() {
       console.log(response.Quotes[0].MinPrice);
       var bestPrice = response.Quotes[0].MinPrice;
 
-
+      //For-loop to grab cheapest ticket from Skycanner API
       for (var i = 0; i <= response.Quotes.length-1; i++) {
         var currentPrice = response.Quotes[i].MinPrice;
         var bestPlaceId = response.Quotes[0].OutboundLeg.DestinationId;
@@ -99,9 +95,9 @@ $(document).ready(function() {
          inboundId = response.Quotes[i].InboundLeg.DestinationId;
          console.log(bestPrice);
         }
-
-
       }
+
+      //For-loop to grab place Id from Skycanner API
       for (var j = 0; j < response.Places.length-1; j++){
         var currentPlaceId = response.Places[j].PlaceId;
         var currentInboundId = response.Places[j].PlaceId;
@@ -119,41 +115,54 @@ $(document).ready(function() {
         console.error('err', err);
     });
 
+    //OpenWeather API
 
+    var APIKey2 = "c8f5da62c7cd9640bb701b098747e434";
     var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
       "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
 
 
-    // Here we run our AJAX call to the OpenWeatherMap API
-    $.ajax({
-        url: queryURL2,
-        method: "GET"
-      })
-      // We store all of the retrieved data inside of an object called "response"
-      .done(function(response) {
-        // Log the resulting object
-        console.log(response);
+    //Click event for activity selection
+    $(".activity").click(function() {
+      var clickedActivity = $(this).data("value");
+      console.log(clickedActivity);
 
-        // Transfer content to HTML
-        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-        $(".wind").html("Wind Speed: " + response.wind.speed);
-        $(".humidity").html("Humidity: " + response.main.humidity);
-        $(".temp").html("Temperature (F) " + response.main.temp);
+      if(clickedActivity === "dirtbike"){
+      console.log("clicked on dirtbike");
+      }
+      else if(clickedActivity === "hiking"){
+      console.log("clicked on hiking");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+    
+    });
 
-        // Log the data in the console as well
-        console.log("Wind Speed: " + response.wind.speed);
-        console.log("Humidity: " + response.main.humidity);
-        console.log("Temperature (F): " + response.main.temp);
-      });
 
-       // Transfer content to HTML
-
-       // Log the data in the console as well
-     
-     });
-
+    //Hide or Display destinations upon activity selection
    $("#noSlider").hide();
-
 
    $("#submitplease").on('click', function () {
        var seasonClicked = $("#sel1").val().trim()
@@ -189,8 +198,10 @@ $(document).ready(function() {
            $(".itemSummer1").hide();
            $(".itemAutumn1").hide();
        }
+    });
+});
 
-   })
+    
 
      //receive user input
      // Create a database of cities
