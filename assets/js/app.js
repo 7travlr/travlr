@@ -70,26 +70,42 @@ $(document).ready(function() {
        console.log("Temperature (F): " + response.main.temp);
      });
 
+   $("#noSlider").hide();
+
+
    $("#submitplease").on('click', function () {
        var seasonClicked = $("#sel1").val().trim()
         console.log(seasonClicked);
-       $("#slider").empty();
+       $("#slider").remove();
+       $("#noSlider").show();
 
        if(seasonClicked === "Spring"){
-           $(".itemSpring").show();
+           $(".itemSpring1").show();
        console.log("testing");
-
+           $(".itemSummer1").hide();
+           $(".itemAutumn1").hide();
+           $(".itemWinter1").hide();
        }
        if(seasonClicked === "Summer"){
-            $(".itemSummer").show();
+           console.log("testing2");
+           $(".itemSummer1").show();
+           $(".itemAutumn1").hide();
+           $(".itemWinter1").hide();
+           $(".itemSpring1").hide();
        }
+       $("#noSlider").show();
        if(seasonClicked === "Autumn"){
-           $(".itemAutumn").show();
-
+           $(".itemAutumn1").show();
+           $(".itemSpring1").hide();
+           $(".itemSummer1").hide();
+           $(".itemWinter1").hide();
        }
+       $("#noSlider").show();
        if(seasonClicked === "Winter"){
-           $(".itemWinter").show();
-
+           $(".itemWinter1").show();
+           $(".itemSpring1").hide();
+           $(".itemSummer1").hide();
+           $(".itemAutumn1").hide();
        }
 
    })
