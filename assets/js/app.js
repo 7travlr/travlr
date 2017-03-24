@@ -192,6 +192,12 @@ $(document).ready(function() {
 
    })
 
+// On click for activity images
+$('img').click(function(){
+  $('.selected').removeClass('selected'); // removes the previous selected class
+   $(this).addClass('selected'); // adds the class to the clicked image
+})
+
      //receive user input
      // Create a database of cities
      // Concatenate user input into query URLs
