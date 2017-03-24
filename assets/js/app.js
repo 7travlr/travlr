@@ -70,6 +70,29 @@ $(document).ready(function() {
        console.log("Temperature (F): " + response.main.temp);
      });
 
+   $("#submitplease").on('click', function () {
+       var seasonClicked = $("#sel1").val().trim()
+        console.log(seasonClicked);
+       $(".itemSpring").hide();
+       $(".itemAutumn").hide();
+       $(".itemSummer").hide();
+       $(".itemWinter").hide();
+       
+       if(seasonClicked === "Spring"){
+           $(".itemSpring").show();
+       console.log("testing");
+       }
+       if(seasonClicked === "Summer"){
+           $(".itemSummer").show();
+       }
+       if(seasonClicked === "Autumn"){
+           $(".itemAutumn").show();
+       }
+       if(seasonClicked === "Winter"){
+           $(".itemWinter").show();
+       }
+
+   })
 
      //declare global variables
      //recieve user input
