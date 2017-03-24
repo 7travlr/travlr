@@ -4,7 +4,6 @@ $(document).ready(function() {
     var activity = " ";
     var location = " ";
 
-
   var mainObject = {
                       hiking: {
                                 spring : ["Colorado", "Yosemite, CA", "Machu Pichu, Peru"],
@@ -15,14 +14,14 @@ $(document).ready(function() {
                       dirtBikeRiding : {
                                 spring : ["Texas"],
                                 summer : ["Dubai"],
-                                autumn : [],
-                                winter: [],
+                                autumn : ["Mojave Desert, CA"],
+                                winter: ["Wales"],
                       },
                       rockClimbing : {
-                                spring : [],
-                                summer : [],
-                                autumn : [],
-                                winter: [],
+                                spring : ["Stanton, Kentucky"],
+                                summer : ["Bavaria, Germany"],
+                                autumn : ["Kalymnos Island, Greece"],
+                                winter: ["Nuevo Leon, Mexico"],
                       },
                       surfing : {
                                 spring : ["Hawaii"],
@@ -36,7 +35,7 @@ $(document).ready(function() {
                                 autumn : ["Honduras"],
                                 winter: ["Maui, Hawaii"],
                       },
-                      jetSkyiing : {
+                      jetSkiing : {
                                 spring : ["Miami,FL"],
                                 summer : ["Denarau Island, Fiji"],
                                 autumn : ["Naples, Italy"],
@@ -49,28 +48,19 @@ $(document).ready(function() {
                                 winter: ["Barcelona, Spain"],
                       },
                       oktoberfest : {
-                                //spring : [],
-                                //summer : [],
-                                autumn : ["Munich, Germany"],
-                                //winter: [],
+                                autumn : ["Munich, Germany", "Waterloo, Canada"],
                       },
-                      snowboarding : {
-                                spring : ["Colorado"],
-                                summer : [""],
-                                autumn : [],
-                                winter: [],
+                      snowSports : {
+                                spring : ["Breckenridge, Colorado"],
+                                summer : ["Swiss Alps"],
+                                autumn : ["Hokkaido, Japan"],
+                                winter: ["Lake Tahoe"],
                       },
-                      snowskiing : {
-                                spring : [],
-                                summer : [],
-                                autumn : [],
-                                winter: [],
-                      },
-                      dogSleding : {
-                                spring : [],
-                                summer : [],
-                                autumn : [],
-                                winter: [],
+                      skyDiving : {
+                                spring : ["Palm Jurmeirah, Dubai"],
+                                summer : ["Pattaya, Thailand"],
+                                autumn : ["Snohomish, Washington"],
+                                winter : ["Sydney, Australia"],
                       }
 
   }
@@ -86,8 +76,6 @@ $(document).ready(function() {
     // Here we are building the URL we need to query the database
     var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
       "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
-
-//browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}
 
 
     $.ajax({
