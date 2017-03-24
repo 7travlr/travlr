@@ -152,6 +152,45 @@ $(document).ready(function() {
      
      });
 
+   $("#noSlider").hide();
+
+
+   $("#submitplease").on('click', function () {
+       var seasonClicked = $("#sel1").val().trim()
+        console.log(seasonClicked);
+       $("#slider").remove();
+       $("#noSlider").show();
+
+       if(seasonClicked === "Spring"){
+           $(".itemSpring1").show();
+       console.log("testing");
+           $(".itemSummer1").hide();
+           $(".itemAutumn1").hide();
+           $(".itemWinter1").hide();
+       }
+       if(seasonClicked === "Summer"){
+           console.log("testing2");
+           $(".itemSummer1").show();
+           $(".itemAutumn1").hide();
+           $(".itemWinter1").hide();
+           $(".itemSpring1").hide();
+       }
+       $("#noSlider").show();
+       if(seasonClicked === "Autumn"){
+           $(".itemAutumn1").show();
+           $(".itemSpring1").hide();
+           $(".itemSummer1").hide();
+           $(".itemWinter1").hide();
+       }
+       $("#noSlider").show();
+       if(seasonClicked === "Winter"){
+           $(".itemWinter1").show();
+           $(".itemSpring1").hide();
+           $(".itemSummer1").hide();
+           $(".itemAutumn1").hide();
+       }
+
+   })
 
      //receive user input
      // Create a database of cities
