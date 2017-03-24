@@ -73,23 +73,23 @@ $(document).ready(function() {
    $("#submitplease").on('click', function () {
        var seasonClicked = $("#sel1").val().trim()
         console.log(seasonClicked);
-       $(".itemSpring").hide();
-       $(".itemAutumn").hide();
-       $(".itemSummer").hide();
-       $(".itemWinter").hide();
-       
+       $("#slider").empty();
+
        if(seasonClicked === "Spring"){
            $(".itemSpring").show();
        console.log("testing");
+
        }
        if(seasonClicked === "Summer"){
-           $(".itemSummer").show();
+            $(".itemSummer").show();
        }
        if(seasonClicked === "Autumn"){
            $(".itemAutumn").show();
+
        }
        if(seasonClicked === "Winter"){
            $(".itemWinter").show();
+
        }
 
    })
