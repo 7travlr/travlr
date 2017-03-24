@@ -3,7 +3,6 @@ $(document).ready(function() {
   //Declare global variables for user selection
     var activity = " ";
     var location = " ";
-  
 
   var mainObject = {
                       hiking: {
