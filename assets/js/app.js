@@ -3,22 +3,7 @@ $(document).ready(function() {
   //Declare global variables for user selection
     var activity = " ";
     var location = " ";
-    
 
-  //List main object with activity and location array
-  // var mainObject = {
-  //    spring : ["Hiking", "Dirt Bike Riding", "Rock Climbing"],
-  //    summer : ["Surfing", "Snorkeling" , "Jet Skiing"],
-  //    autumn : ["Wine Tasting", "Oktoberfest"],
-  //    winter : ["Snow Boarding", "Snow Skiing", "Dog Sleding"]
-  //  };
-
-  // var secObject = {
-  //     spring: ["Colorado, US", ""],
-  //     summer: ["Caribbean", "Mexico", ""],
-  //     autumn: ["France", "New Zealand"],
-  //     winter : ["Switzerland", "Austria", "Iceland"]
-  //    };
 
   var mainObject = {
                       hiking: {
