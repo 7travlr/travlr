@@ -49,9 +49,14 @@ body
 	margin-bottom: 50px;
 }
 .section-wrapper{
-	padding-top: 70px;
-	padding-bottom: 70px;
+	padding-top: 120px;
+	padding-bottom: 120px;
 }
+#sel1 {
+	padding-top: 280px;
+	padding-bottom: 210px;
+}
+
 p{
 	color: #969595;
 }
@@ -439,6 +444,7 @@ footer{
 	text-align: center;
 	padding: 20px;
 	background: #3c763d;
+	margin: auto;
 }
 footer a{
 	color: #fff;
@@ -486,3 +492,18 @@ footer a:hover, footer a:focus{
 		padding-left: 15px;
 	}
 }
+
+
+
+
+/*=================================================
+||				14. Selected image box-shadow
+==================================================*/
+
+img {
+	border:solid 1px gray; margin:10px;
+}
+.selected {
+   box-shadow:0px 12px 22px 1px #333;
+}
+

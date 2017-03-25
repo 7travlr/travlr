@@ -1,26 +1,10 @@
 $(document).ready(function() {
   
   //Declare global variables for user selection
-    var activity = " ";
-    var location = " ";
-    
+    var clickedActivity;
+    var destination;
 
-  //List main object with activity and location array
-  // var mainObject = {
-  //    spring : ["Hiking", "Dirt Bike Riding", "Rock Climbing"],
-  //    summer : ["Surfing", "Snorkeling" , "Jet Skiing"],
-  //    autumn : ["Wine Tasting", "Oktoberfest"],
-  //    winter : ["Snow Boarding", "Snow Skiing", "Dog Sleding"]
-  //  };
-
-  // var secObject = {
-  //     spring: ["Colorado, US", ""],
-  //     summer: ["Caribbean", "Mexico", ""],
-  //     autumn: ["France", "New Zealand"],
-  //     winter : ["Switzerland", "Austria", "Iceland"]
-  //    };
-
-  var mainObject = {
+    var mainObject = {
                       hiking: {
                                 spring : ["Colorado", "Yosemite, CA", "Machu Pichu, Peru"],
                                 summer : ["Bryce Canyon National Park"],
@@ -30,14 +14,14 @@ $(document).ready(function() {
                       dirtBikeRiding : {
                                 spring : ["Texas"],
                                 summer : ["Dubai"],
-                                autumn : [],
-                                winter: [],
+                                autumn : ["Mojave Desert, CA"],
+                                winter: ["Wales"],
                       },
                       rockClimbing : {
-                                spring : [],
-                                summer : [],
-                                autumn : [],
-                                winter: [],
+                                spring : ["Stanton, Kentucky"],
+                                summer : ["Bavaria, Germany"],
+                                autumn : ["Kalymnos Island, Greece"],
+                                winter: ["Nuevo Leon, Mexico"],
                       },
                       surfing : {
                                 spring : ["Hawaii"],
@@ -51,41 +35,20 @@ $(document).ready(function() {
                                 autumn : ["Honduras"],
                                 winter: ["Maui, Hawaii"],
                       },
-                      jetSkyiing : {
+                      jetSkiing : {
                                 spring : ["Miami,FL"],
                                 summer : ["Denarau Island, Fiji"],
                                 autumn : ["Naples, Italy"],
                                 winter: ["The Bay of Islands, New Zealand"],
                       },
-                      wineTasting : {
-                                spring : ["Napa Valley"],
-                                summer : ["Bordeaux, France"],
-                                autumn : ["Tuscany, Italy"],
-                                winter: ["Barcelona, Spain"],
-                      },
                       oktoberfest : {
-                                //spring : [],
-                                //summer : [],
-                                autumn : ["Munich, Germany"],
-                                //winter: [],
+                                autumn : ["Munich, Germany", "Waterloo, Canada"],
                       },
-                      snowboarding : {
-                                spring : ["Colorado"],
-                                summer : [""],
-                                autumn : [],
-                                winter: [],
-                      },
-                      snowskiing : {
-                                spring : [],
-                                summer : [],
-                                autumn : [],
-                                winter: [],
-                      },
-                      dogSleding : {
-                                spring : [],
-                                summer : [],
-                                autumn : [],
-                                winter: [],
+                      snowSports : {
+                                spring : ["Breckenridge, Colorado"],
+                                summer : ["Swiss Alps"],
+                                autumn : ["Hokkaido, Japan"],
+                                winter: ["Lake Tahoe"],
                       }
 
   }
@@ -94,17 +57,11 @@ $(document).ready(function() {
   console.log(mainObject.hiking.spring[0]);
 
   //Skyscanner API
-    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/fr/2018-01/2018-03?apikey=uc166750652136729269642399717836";
+    var APIKey1 = "166750652136729269642399717836";
 
-    var APIKey2 = "166a433c57516f51dfab1f7edaed8413";
+    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/fr/2018-01/2018-03?apikey=uc" + APIKey1;
 
-    // Here we are building the URL we need to query the database
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
-      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
-
-//browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}
-
-
+    //AJAX call to SkyScanner API
     $.ajax({
       url: queryURL,
       method: 'GET'
@@ -114,7 +71,7 @@ $(document).ready(function() {
       console.log(response.Quotes[0].MinPrice);
       var bestPrice = response.Quotes[0].MinPrice;
 
-
+      //For-loop to grab cheapest ticket from Skycanner API
       for (var i = 0; i <= response.Quotes.length-1; i++) {
         var currentPrice = response.Quotes[i].MinPrice;
         var bestPlaceId = response.Quotes[0].OutboundLeg.DestinationId;
@@ -126,9 +83,9 @@ $(document).ready(function() {
          inboundId = response.Quotes[i].InboundLeg.DestinationId;
          console.log(bestPrice);
         }
-
-
       }
+
+      //For-loop to grab place Id from Skycanner API
       for (var j = 0; j < response.Places.length-1; j++){
         var currentPlaceId = response.Places[j].PlaceId;
         var currentInboundId = response.Places[j].PlaceId;
@@ -146,39 +103,99 @@ $(document).ready(function() {
         console.error('err', err);
     });
 
+    //OpenWeather API
 
+    var APIKey2 = "c8f5da62c7cd9640bb701b098747e434";
     var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
       "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
 
 
-    // Here we run our AJAX call to the OpenWeatherMap API
-    $.ajax({
-        url: queryURL2,
-        method: "GET"
-      })
-      // We store all of the retrieved data inside of an object called "response"
-      .done(function(response) {
-        // Log the resulting object
-        console.log(response);
+    //Click event for activity selection
+    $(".activity").click(function() {
+      var clickedActivity = $(this).data("value");
+      console.log(clickedActivity);
 
-        // Transfer content to HTML
-        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-        $(".wind").html("Wind Speed: " + response.wind.speed);
-        $(".humidity").html("Humidity: " + response.main.humidity);
-        $(".temp").html("Temperature (F) " + response.main.temp);
+      if(clickedActivity === "dirtbike"){
+      console.log("clicked on dirtbike");
+      }
+      else if(clickedActivity === "hiking"){
+      console.log("clicked on hiking");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+      else if(clickedActivity === "rockclimbing"){
+      console.log("clicked on rockclimbing");
+      }
+    
+    });
 
-        // Log the data in the console as well
-        console.log("Wind Speed: " + response.wind.speed);
-        console.log("Humidity: " + response.main.humidity);
-        console.log("Temperature (F): " + response.main.temp);
-      });
 
-       // Transfer content to HTML
+    //Hide or Display destinations upon activity selection
+   $("#noSlider").hide();
 
-       // Log the data in the console as well
-     
-     });
+   $("#submitplease").on('click', function () {
+       var seasonClicked = $("#sel1").val().trim()
+        console.log(seasonClicked);
+       $("#slider").remove();
+       $("#noSlider").show();
 
+       if(seasonClicked === "Spring"){
+           $(".itemSpring1").show();
+       console.log("testing");
+           $(".itemSummer1").hide();
+           $(".itemAutumn1").hide();
+           $(".itemWinter1").hide();
+       }
+       if(seasonClicked === "Summer"){
+           console.log("testing2");
+           $(".itemSummer1").show();
+           $(".itemAutumn1").hide();
+           $(".itemWinter1").hide();
+           $(".itemSpring1").hide();
+       }
+       $("#noSlider").show();
+       if(seasonClicked === "Autumn"){
+           $(".itemAutumn1").show();
+           $(".itemSpring1").hide();
+           $(".itemSummer1").hide();
+           $(".itemWinter1").hide();
+       }
+       $("#noSlider").show();
+       if(seasonClicked === "Winter"){
+           $(".itemWinter1").show();
+           $(".itemSpring1").hide();
+           $(".itemSummer1").hide();
+           $(".itemAutumn1").hide();
+       }
+    });
+});
+
+    
+
+// On click for activity images
+$('img').click(function(){
+  $('.selected').removeClass('selected'); // removes the previous selected class
+   $(this).addClass('selected'); // adds the class to the clicked image
+})
 
      //receive user input
      // Create a database of cities
