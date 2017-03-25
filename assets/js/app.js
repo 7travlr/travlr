@@ -179,6 +179,7 @@ $(document).ready(function() {
 
 });
 
+
 // On click for activity images
 $('img').click(function(){
   $('.selected').removeClass('selected'); // removes the previous selected class
