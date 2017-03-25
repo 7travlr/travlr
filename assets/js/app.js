@@ -119,6 +119,7 @@ $(document).ready(function() {
       .done(function(response) {
         // Log the resulting object
         console.log(response);
+        
     $("#colorado").click(function() {
       $(".weatherinfo").append("<h1>" + response.name + " Weather Details</h1>");
       $(".weatherinfo").append("<h3> Temperature (F) " + response.main.temp + "</h3>");
@@ -177,6 +178,7 @@ $(document).ready(function() {
     });
 
 });
+
 
 // On click for activity images
 $('img').click(function(){
