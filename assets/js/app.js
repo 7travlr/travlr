@@ -189,6 +189,69 @@ $(document).ready(function() {
     });
 });
 
+
+$("#asheville").on("click",function(){
+    var queryURL = "https://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/lfta/anytime/anytime?apikey=uc166750652136729269642399717836";
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(response) {
+      console.log(response);
+      console.log(response.Places[0].Name);
+      console.log(response.Quotes[0].MinPrice);
+      var bestPrice = response.Quotes[0].MinPrice;
+      for (var i = 0; i <= response.Quotes.length-1; i++) {
+        var currentPrice = response.Quotes[i].MinPrice;
+        var bestPlaceId = response.Quotes[0].OutboundLeg.DestinationId;
+        var inboundId = response.Quotes[0].InboundLeg.DestinationId;
+        if (currentPrice <= bestPrice){
+         bestPrice = currentPrice;
+         bestPlaceId = response.Quotes[i].OutboundLeg.DestinationId;
+         inboundId = response.Quotes[i].InboundLeg.DestinationId;
+         console.log(bestPrice);
+        }
+      }
+      for (var j = 0; j < response.Places.length-1; j++){
+        var currentPlaceId = response.Places[j].PlaceId;
+        var currentInboundId = response.Places[j].PlaceId;
+        if (currentPlaceId === bestPlaceId){
+        var outbound = response.Places[j].Name;
+        }
+        if (currentInboundId === inboundId){
+          var inbound = response.Places[j].Name;
+        }
+      }
+          console.log("Roundtrip flight from " + inbound + " to " + outbound + "! Only $" + bestPrice + ".99!!!");
+    }).fail(function  (err){
+        console.error('err', err);
+    });
+
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+      "q=Asheville,Unitedstates&units=imperial&appid=" + APIKey2;
+
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+      })
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+        // Log the resulting object
+        console.log(response);
+
+        // Transfer content to HTML
+        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+        $(".wind").html("Wind Speed: " + response.wind.speed);
+        $(".humidity").html("Humidity: " + response.main.humidity);
+        $(".temp").html("Temperature (F) " + response.main.temp);
+
+        // Log the data in the console as well
+        console.log("Wind Speed: " + response.wind.speed);
+        console.log("Humidity: " + response.main.humidity);
+        console.log("Temperature (F): " + response.main.temp);
+      });
+
+  });
+
     
 
 // On click for activity images
