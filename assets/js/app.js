@@ -6,55 +6,55 @@ $(document).ready(function() {
 
     var mainObject = {
                       hiking: {
-                                spring : ["Colorado", "Yosemite, CA", "Machu Pichu, Peru"],
-                                summer : ["Bryce Canyon National Park"],
-                                autumn : ["Asheville, NC", ""],
-                                winter: ["Mt. Everest!"],
+                                spring : ["./assets/images/hiking_colorado.jpg", "./assets/images/hiking_yosemite.jpg", "./assets/images/hiking_machupichu"],
+                                summer : ["./assets/images/hiking_brycecanyon"],
+                                autumn : ["./assets/images/hiking_asheville"],
+                                winter: ["./assets/images/hiking_everest.jpg"],
                       },
                       dirtBikeRiding : {
-                                spring : ["Texas"],
-                                summer : ["Dubai"],
-                                autumn : ["Mojave Desert, CA"],
-                                winter: ["Wales"],
+                                spring : ["./assets/images/dirtbike_texas.jpg"],
+                                summer : ["./assets/images/dirthbikes_dubai.jpg"],
+                                autumn : ["./assets/images/dirtbike_mojavedesert.jpg"],
+                                winter: ["./images/hiking_wales.jpg"],
                       },
                       rockClimbing : {
-                                spring : ["Stanton, Kentucky"],
-                                summer : ["Bavaria, Germany"],
-                                autumn : ["Kalymnos Island, Greece"],
-                                winter: ["Nuevo Leon, Mexico"],
+                                spring : ["./images/rockclimbing_kentucky.jpg"],
+                                summer : ["./images/rockclimbing_bavariagermany.jpg"],
+                                autumn : ["./images/rockclimbing_greece.jpg"],
+                                winter: ["./images/rockclimbing_mexico.jpg"],
                       },
                       surfing : {
-                                spring : ["Hawaii"],
-                                summer : ["Huntington Beach,CA"],
-                                autumn : ["Costa Rica"],
-                                winter: ["Australia"],
+                                spring : ["./images/surfing_hawaii.jpg"],
+                                summer : ["./images/surfing_cali.jpg"],
+                                autumn : ["./images/surfing_costarica.jpg"],
+                                winter: ["./images/surfing_australia.jpg"],
                       },
                       snorkeling : {
-                                spring : ["Bahamas"],
-                                summer : ["Jamaica"],
-                                autumn : ["Honduras"],
-                                winter: ["Maui, Hawaii"],
+                                spring : ["./images/snorkeling_bahamas.jpg"],
+                                summer : ["./images/snorkeling_jamaica.jpg"],
+                                autumn : ["./images/snorkeling_honduras.jpg"],
+                                winter: ["./images/snorkeling_maui.jpg"],
                       },
                       jetSkiing : {
-                                spring : ["Miami,FL"],
-                                summer : ["Denarau Island, Fiji"],
-                                autumn : ["Naples, Italy"],
-                                winter: ["The Bay of Islands, New Zealand"],
+                                spring : ["./images/jetskiing_miami.jpg"],
+                                summer : ["./images/jetskiing_fiji.jpg"],
+                                autumn : ["./images/jetskiing_italy.jpg"],
+                                winter: ["./images/jetskiing_newzealand.jpg"],
                       },
                       oktoberfest : {
-                                autumn : ["Munich, Germany", "Waterloo, Canada"],
+                                autumn : ["./images/oktoberfest_germany.jpg", "/images/oktoberfest_canada.jpg"],
                       },
                       snowSports : {
-                                spring : ["Breckenridge, Colorado"],
-                                summer : ["Swiss Alps"],
-                                autumn : ["Hokkaido, Japan"],
-                                winter: ["Lake Tahoe"],
-                      }
+                                spring : ["./images/snowsports_colorado.jpg"],
+                                summer : ["./images/snowsports_swissalps.jpg"],
+                                autumn : ["./images/snowsports_japan.jpg"],
+                                winter: ["./images/snowsports_laketahoe.jpg"],
+                      },
 
   }
   
   console.log(mainObject);
-  console.log(mainObject.hiking.spring[0]);
+  console.log(mainObject.dirtBikeRiding.spring[0]);
 
   //Skyscanner API
     var APIKey1 = "166750652136729269642399717836";
@@ -94,10 +94,10 @@ $(document).ready(function() {
         }
         if (currentInboundId === inboundId){
           var inbound = response.Places[j].Name;
-          console.log("Roundtrip flight from " + inbound + " to " + outbound + "! Only $" + bestPrice + ".99!!!");
         }
-
-      }
+        }
+        $(".flightinfo").append("Roundtrip flight from " + inbound + " to Denver, Colorado ! Only $" + bestPrice + ".99!!!");
+        
 
     }).fail(function  (err){
         console.error('err', err);
@@ -107,89 +107,76 @@ $(document).ready(function() {
 
     var APIKey2 = "c8f5da62c7cd9640bb701b098747e434";
     var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
-      "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey2;
+      "q=Denver,Colorado&units=imperial&appid=" + APIKey2;
+
+
+      //AJAX call to OpenWeather API
+      $.ajax({
+        url: queryURL2,
+        method: "GET"
+      })
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+        // Log the resulting object
+        console.log(response);
+    $("#colorado").click(function() {
+      $(".weatherinfo").append("<h1>" + response.name + " Weather Details</h1>");
+      $(".weatherinfo").append("<h3> Temperature (F) " + response.main.temp + "</h3>");
+      $(".weatherinfo").append("<h3> Humidity: " + response.main.humidity + "</h3>");
+      $(".weatherinfo").append("<h3> Wind Speed: " + response.wind.speed + "</h3>");
+    });
+       
+      });
 
 
     //Click event for activity selection
     $(".activity").click(function() {
       var clickedActivity = $(this).data("value");
-      console.log(clickedActivity);
+      var seasonClicked = $("#sel1").val().trim()
 
-      if(clickedActivity === "dirtbike"){
-      console.log("clicked on dirtbike");
+      console.log(clickedActivity, seasonClicked);
+
+
+      if(clickedActivity === "hiking" & seasonClicked === "Spring"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.hiking.spring[0] + '">');
       }
-      else if(clickedActivity === "hiking"){
-      console.log("clicked on hiking");
+      else if(clickedActivity === "hiking" & seasonClicked === "Spring"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.hiking.spring[1] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "hiking" & seasonClicked === "Summer"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.hiking.summer[0] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "hiking" & seasonClicked === "Autumn"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.hiking.autumn[0] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "hiking" & seasonClicked === "Winter"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.hiking.winter[0] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "dirtbike" & seasonClicked === "Spring"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.dirtBikeRiding.spring[0] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "dirtbike" & seasonClicked === "Summer"){
+        console.log("clicked on hiking");
+        $(".itemSpring").append('<img src="' + mainObject.dirtBikeRiding.summer[0] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "dirtbike" & seasonClicked === "Autumn"){
+        console.log("clicked on dirtbike");
+        $(".itemSpring").append('<img src="' + mainObject.dirtBikeRiding.autumn[0] + '">');
       }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
-      }
-      else if(clickedActivity === "rockclimbing"){
-      console.log("clicked on rockclimbing");
+      else if(clickedActivity === "dirtbike" & seasonClicked === "Winter"){
+        console.log("clicked on dirtbike");
+        $(".itemSpring").append('<img src="' + mainObject.dirtBikeRiding.winter[0] + '">');
       }
     
     });
 
-
-    //Hide or Display destinations upon activity selection
-   $("#noSlider").hide();
-
-   $("#submitplease").on('click', function () {
-       var seasonClicked = $("#sel1").val().trim()
-        console.log(seasonClicked);
-       $("#slider").remove();
-       $("#noSlider").show();
-
-       if(seasonClicked === "Spring"){
-           $(".itemSpring1").show();
-       console.log("testing");
-           $(".itemSummer1").hide();
-           $(".itemAutumn1").hide();
-           $(".itemWinter1").hide();
-       }
-       if(seasonClicked === "Summer"){
-           console.log("testing2");
-           $(".itemSummer1").show();
-           $(".itemAutumn1").hide();
-           $(".itemWinter1").hide();
-           $(".itemSpring1").hide();
-       }
-       $("#noSlider").show();
-       if(seasonClicked === "Autumn"){
-           $(".itemAutumn1").show();
-           $(".itemSpring1").hide();
-           $(".itemSummer1").hide();
-           $(".itemWinter1").hide();
-       }
-       $("#noSlider").show();
-       if(seasonClicked === "Winter"){
-           $(".itemWinter1").show();
-           $(".itemSpring1").hide();
-           $(".itemSummer1").hide();
-           $(".itemAutumn1").hide();
-       }
-    });
 });
-
-    
 
 // On click for activity images
 $('img').click(function(){
