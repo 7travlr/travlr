@@ -41,12 +41,6 @@ $(document).ready(function() {
                                 autumn : ["Naples, Italy"],
                                 winter: ["The Bay of Islands, New Zealand"],
                       },
-                      wineTasting : {
-                                spring : ["Napa Valley"],
-                                summer : ["Bordeaux, France"],
-                                autumn : ["Tuscany, Italy"],
-                                winter: ["Barcelona, Spain"],
-                      },
                       oktoberfest : {
                                 autumn : ["Munich, Germany", "Waterloo, Canada"],
                       },
@@ -55,12 +49,6 @@ $(document).ready(function() {
                                 summer : ["Swiss Alps"],
                                 autumn : ["Hokkaido, Japan"],
                                 winter: ["Lake Tahoe"],
-                      },
-                      skyDiving : {
-                                spring : ["Palm Jurmeirah, Dubai"],
-                                summer : ["Pattaya, Thailand"],
-                                autumn : ["Snohomish, Washington"],
-                                winter : ["Sydney, Australia"],
                       }
 
   }
