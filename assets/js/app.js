@@ -106,7 +106,7 @@ $(document).ready(function() {
     //OpenWeather API
 
     var APIKey2 = "c8f5da62c7cd9640bb701b098747e434";
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/weather?" +
+    var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?" +
       "q=Denver,Colorado&units=imperial&appid=" + APIKey2;
 
 
